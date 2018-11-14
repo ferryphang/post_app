@@ -6,13 +6,10 @@ import { reduxForm } from 'redux-form';
 
 class PostsNew extends Component {
   render() {
-    console.log(this.props);
-
     const { fields: { title, categories, content }, handleSubmit } = this.props;
 
-
     return (
-      <form onSubmit={handleSubmit(createPost)} >
+      <form onSubmit={handleSubmit(this.props.createPost)} >
         <h3>Create New Form</h3>
         <div className="form-group">
           <label htmlFor="">Title</label>
@@ -33,16 +30,15 @@ class PostsNew extends Component {
   }
 }
 
-function validate(values) {
-  const errors = {};
-  if(!values.title){
-    errors.title = "Enter a title";
-  }
-  return errors;
-}
+// function validate(values) {
+//   const errors = {};
+//   if(!values.title){
+//     errors.title = "Enter a title";
+//   }
+//   return errors;
+// }
 
 export default reduxForm({
   form: 'PostsNewForm',
   fields: ['title', 'categories', 'content'],
-  // validate
 }, null, { createPost })(PostsNew);
